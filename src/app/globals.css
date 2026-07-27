@@ -451,3 +451,45 @@ img {
   color: #000;
   transform: translateY(-2px);
 }
+
+.gif-info {
+  margin-top: 30px;
+  padding: 24px;
+  background: #101010;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 18px;
+}
+
+.gif-info h3 {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+.gif-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.gif-grid div {
+  background: #171717;
+  padding: 18px;
+  border-radius: 14px;
+  text-align: center;
+}
+
+.gif-grid strong {
+  display: block;
+  margin-bottom: 10px;
+  font-size: .95rem;
+}
+
+.gif-grid p {
+  color: #bcbcbc;
+}
+
+@media(max-width:700px) {
+  .gif-grid {
+    grid-template-columns: 1fr;
+  }
+}
