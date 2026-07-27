@@ -7,7 +7,7 @@ type ToolbarProps = {
 export default function Toolbar({ ascii }: ToolbarProps) {
 
     async function copyAscii() {
-        if (!ascii) return;
+        if (!ascii) return;   
         await navigator.clipboard.writeText(ascii);
         alert("ASCII copied!");
     }
