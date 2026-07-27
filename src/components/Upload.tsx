@@ -3,16 +3,20 @@ import { ChangeEvent, useState } from "react";
 import Preview from "@/components/Preview";
 import AsciiViewer from "@/components/AsciiViewer";
 import Controls from "@/components/Controls";
-import { useAscii } from "@/hooks/useAscii";
+import { useAscii, AsciiOptions } from "@/hooks/useAscii";
 
 export default function Upload() {
     const [image, setImage] = useState<string | null>(null);
     const [fileName, setFileName] = useState("");
     const [fileSize, setFileSize] = useState("");
-    const [width, setWidth] = useState(120);
-
-    const ascii = useAscii(image, width);
-
+    const [options, setOptions] = useState<AsciiOptions>({
+        width: 120,
+        brightness: 0,
+        contrast: 0,
+        invert: false,
+        characterSet: "standard"
+    });
+    const ascii = useAscii(image, options);
     function handleFile(e: ChangeEvent<HTMLInputElement>) {
         const file = e.target.files?.[0];
         if (!file) return;
@@ -24,22 +28,17 @@ export default function Upload() {
         };
         reader.readAsDataURL(file);
     }
-
     return (
         <section className="upload-section">
             <div className="upload-card">
-                <div className="upload-icon">
-                    📁
-                </div>
+                <div className="upload-icon">📁</div>
                 <h2>Upload your Image or GIF</h2>
-                <p>
-                    Select an image or animated GIF from your computer.
-                </p>
+                <p>Select an image or GIF from your computer.</p>
                 <input
+                    hidden
+                    id="upload"
                     type="file"
                     accept="image/*,.gif"
-                    id="upload"
-                    hidden
                     onChange={handleFile}
                 />
                 <label
@@ -48,8 +47,8 @@ export default function Upload() {
                 >Choose File
                 </label>
                 <Controls
-                    width={width}
-                    setWidth={setWidth}
+                    options={options}
+                    setOptions={setOptions}
                 />
                 {image && (
                     <div className="converter-grid">
@@ -58,15 +57,18 @@ export default function Upload() {
                             <Preview
                                 image={image}
                                 fileName={fileName}
-                                fileSize={fileSize} />
+                                fileSize={fileSize}
+                            />
                         </div>
                         <div className="converter-panel">
                             <AsciiViewer
-                                ascii={ascii} />
+                                ascii={ascii}
+                            />
                         </div>
                     </div>
                 )}
             </div>
         </section>
     );
+
 }

@@ -1,9 +1,18 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { imageToAscii } from "@/lib/ascii";
 
-export function useAscii(image: string | null, width: number) {
+export type AsciiOptions = {
+    width: number;
+    brightness: number;
+    contrast: number;
+    invert: boolean;
+    characterSet: "standard" | "dense" | "blocks";
+};
+export function useAscii(
+    image: string | null,
+    options: AsciiOptions
+) {
     const [ascii, setAscii] = useState("");
     useEffect(() => {
         if (!image) {
@@ -12,9 +21,17 @@ export function useAscii(image: string | null, width: number) {
         }
         const img = new Image();
         img.onload = () => {
-            setAscii(imageToAscii(img, width));
+            const result = imageToAscii(img, options);
+            setAscii(result);
         };
         img.src = image;
-    }, [image, width]);
+    }, [
+        image,
+        options.width,
+        options.brightness,
+        options.contrast,
+        options.invert,
+        options.characterSet
+    ]);
     return ascii;
 }
