@@ -527,3 +527,48 @@ img {
   color: black;
   transform: translateY(-2px);
 }
+
+.converter-grid {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 32px;
+  align-items: start;
+  margin-top: 50px;
+}
+
+@media(max-width:1100px) {
+  .converter-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.converter-panel {
+  background: #0d0d0d;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 22px;
+  padding: 24px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, .35);
+}
+
+.converter-panel h2 {
+  font-size: 1.25rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.preview-image {
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, .08);
+}
+
+.ascii-output {
+  background: #050505;
+  border-radius: 16px;
+  padding: 24px;
+  height: 650px;
+  overflow: auto;
+  font-family: Consolas, Monaco, monospace;
+  white-space: pre;
+  border: 1px solid rgba(255, 255, 255, .08);
+} 

@@ -56,6 +56,9 @@ export default function Upload() {
                     htmlFor="upload"
                     className="upload-btn">Choose File
                 </label>
+                <h2 style={{ marginTop: "50px", marginBottom: "20px" }}>
+                    Converter Settings
+                </h2>
                 <Controls
                     options={options}
                     setOptions={setOptions}
