@@ -235,3 +235,18 @@ img {
 .preview span {
   color: #9d9d9d;
 }
+
+.ascii-output {
+  margin-top: 50px;
+  padding: 30px;
+  background: #0d0d0d;
+  border-radius: 20px;
+  overflow: auto;
+  font-family: monospace;
+  font-size: 6px;
+  line-height: 6px;
+  white-space: pre;
+  border: 1px solid rgba(255, 255, 255, .08);
+  text-align: left;
+  max-height: 600px;
+}
