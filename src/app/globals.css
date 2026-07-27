@@ -212,3 +212,26 @@ img {
 .upload-btn:hover {
   transform: scale(1.04);
 }
+
+.preview {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.preview img {
+  width: 320px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, .12);
+}
+
+.preview h3 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.preview span {
+  color: #9d9d9d;
+}
