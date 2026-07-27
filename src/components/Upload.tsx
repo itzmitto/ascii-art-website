@@ -44,15 +44,22 @@ export default function Upload() {
                     htmlFor="upload"
                     className="upload-btn">Choose File
                 </label>
-                {image && (
-                    <Preview
-                        image={image}
-                        fileName={fileName}
-                        fileSize={fileSize} />
-                )}
-                {ascii && (
-                    <AsciiViewer
-                        ascii={ascii}/>
+                {image && ascii && (
+                    <div className="converter-grid">
+                        <div className="converter-panel">
+                            <h2>Original Image</h2>
+                            <Preview
+                                image={image}
+                                fileName={fileName}
+                                fileSize={fileSize}
+                            />
+                        </div>
+                        <div className="converter-panel">
+                            <AsciiViewer
+                                ascii={ascii}
+                            />
+                        </div>
+                    </div>
                 )}
             </div>
         </section>

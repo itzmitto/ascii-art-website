@@ -9,12 +9,16 @@ export default function Preview({
     fileSize,
 }: PreviewProps) {
     return (
-        <div className="preview">
+        <>
             <img
+                className="preview-image"
                 src={image}
-                alt="Preview"/>
-            <h3>{fileName}</h3>
-            <span>{fileSize}</span>
-        </div>
+                alt={fileName}
+            />
+            <div className="preview-info">
+                <h3>{fileName}</h3>
+                <span>{fileSize}</span>
+            </div>
+        </>
     );
 }

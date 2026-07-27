@@ -237,18 +237,16 @@ img {
 }
 
 .ascii-output {
-  margin-top: 50px;
-  padding: 30px;
-  background: #0d0d0d;
-  border-radius: 20px;
+  background: #090909;
+  padding: 20px;
+  border-radius: 16px;
   overflow: auto;
+  height: 600px;
   font-family: monospace;
-  font-size: 6px;
-  line-height: 6px;
+  font-size: 7px;
+  line-height: 7px;
   white-space: pre;
   border: 1px solid rgba(255, 255, 255, .08);
-  text-align: left;
-  max-height: 600px;
 }
 
 .ascii-container {
@@ -259,4 +257,50 @@ img {
 .ascii-container h2 {
   margin-bottom: 20px;
   font-size: 1.4rem;
+}
+
+.converter-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 60px;
+  align-items: start;
+}
+
+.converter-panel {
+  background: #101010;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 24px;
+  padding: 30px;
+}
+
+.converter-panel h2 {
+  margin-bottom: 24px;
+  font-size: 1.5rem;
+}
+
+.preview-image {
+  width: 100%;
+  border-radius: 18px;
+  display: block;
+}
+
+.preview-info {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.preview-info h3 {
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.preview-info span {
+  color: #9d9d9d;
+}
+
+@media(max-width:900px) {
+  .converter-grid {
+    grid-template-columns: 1fr;
+  }
 }
