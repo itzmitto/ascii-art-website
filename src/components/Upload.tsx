@@ -2,6 +2,8 @@
 
 import { ChangeEvent, useState } from "react";
 import { imageToAscii } from "@/lib/ascii";
+import Preview from "@/components/Preview";
+import AsciiViewer from "@/components/AsciiViewer";
 
 export default function Upload() {
     const [image, setImage] = useState<string | null>(null);
@@ -43,18 +45,14 @@ export default function Upload() {
                     className="upload-btn">Choose File
                 </label>
                 {image && (
-                    <div className="preview">
-                        <img
-                            src={image}
-                            alt="Preview" />
-                        <h3>{fileName}</h3>
-                        <span>{fileSize}</span>
-                    </div>
+                    <Preview
+                        image={image}
+                        fileName={fileName}
+                        fileSize={fileSize} />
                 )}
                 {ascii && (
-                    <pre className="ascii-output">
-                        {ascii}
-                    </pre>
+                    <AsciiViewer
+                        ascii={ascii}/>
                 )}
             </div>
         </section>

@@ -250,3 +250,13 @@ img {
   text-align: left;
   max-height: 600px;
 }
+
+.ascii-container {
+  margin-top: 50px;
+  text-align: left;
+}
+
+.ascii-container h2 {
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+}
