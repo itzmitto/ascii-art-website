@@ -4,11 +4,12 @@ import Preview from "@/components/Preview";
 import AsciiViewer from "@/components/AsciiViewer";
 import Controls from "@/components/Controls";
 import { useAscii, AsciiOptions } from "@/hooks/useAscii";
+import { UploadFile } from "@/types/ascii";
 
 export default function Upload() {
-    const [image, setImage] = useState<string | null>(null);
-    const [fileName, setFileName] = useState("");
-    const [fileSize, setFileSize] = useState("");
+
+    const [fileData, setFileData] = useState<UploadFile | null>(null);
+
     const [options, setOptions] = useState<AsciiOptions>({
         width: 120,
         brightness: 0,
@@ -16,48 +17,80 @@ export default function Upload() {
         invert: false,
         characterSet: "standard"
     });
-    const ascii = useAscii(image, options);
+
+    const ascii = useAscii(fileData?.url ?? null, options);
+
     function handleFile(e: ChangeEvent<HTMLInputElement>) {
+
         const file = e.target.files?.[0];
+
         if (!file) return;
-        setFileName(file.name);
-        setFileSize((file.size / 1024 / 1024).toFixed(2) + " MB");
-        const reader = new FileReader();
-        reader.onload = () => {
-            setImage(reader.result as string);
-        };
-        reader.readAsDataURL(file);
+
+        const url = URL.createObjectURL(file);
+
+        const type = file.type === "image/gif"
+            ? "gif"
+            : "image";
+
+        setFileData({
+            type,
+            name: file.name,
+            size: (file.size / 1024 / 1024).toFixed(2) + " MB",
+            url,
+            file
+        });
+
     }
+
     return (
+
         <section className="upload-section">
+
             <div className="upload-card">
-                <div className="upload-icon">📁</div>
-                <h2>Upload your Image or GIF</h2>
-                <p>Select an image or GIF from your computer.</p>
+
+                <div className="upload-icon">
+                    📁
+                </div>
+
+                <h2>
+                    Upload Image or GIF
+                </h2>
+
+                <p>
+                    PNG, JPG, WEBP and GIF are supported.
+                </p>
+
                 <input
                     hidden
                     id="upload"
                     type="file"
-                    accept="image/*,.gif"
+                    accept="image/*"
                     onChange={handleFile}
                 />
+
                 <label
                     htmlFor="upload"
                     className="upload-btn"
-                >Choose File
+                >
+                    Choose File
                 </label>
+
                 <Controls
                     options={options}
                     setOptions={setOptions}
                 />
-                {image && (
+                {fileData && (
                     <div className="converter-grid">
                         <div className="converter-panel">
-                            <h2>Original Image</h2>
+                            <h2>
+                                {fileData.type === "gif"
+                                    ? "GIF Preview"
+                                    : "Image Preview"}
+                            </h2>
                             <Preview
-                                image={image}
-                                fileName={fileName}
-                                fileSize={fileSize}
+                                image={fileData.url}
+                                fileName={fileData.name}
+                                fileSize={fileData.size}
                             />
                         </div>
                         <div className="converter-panel">
