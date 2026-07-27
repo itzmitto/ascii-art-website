@@ -1,5 +1,6 @@
 "use client";
-import { ChangeEvent, useState } from "react";
+
+import { ChangeEvent, DragEvent, useState } from "react";
 import Preview from "@/components/Preview";
 import AsciiViewer from "@/components/AsciiViewer";
 import Controls from "@/components/Controls";
@@ -7,8 +8,9 @@ import { useAscii, AsciiOptions } from "@/hooks/useAscii";
 import { UploadFile } from "@/types/ascii";
 
 export default function Upload() {
-
     const [fileData, setFileData] = useState<UploadFile | null>(null);
+    const [dragActive, setDragActive] = useState(false);
+
     const [options, setOptions] = useState<AsciiOptions>({
         width: 120,
         brightness: 0,
@@ -18,9 +20,8 @@ export default function Upload() {
     });
 
     const ascii = useAscii(fileData?.url ?? null, options);
-    function handleFile(e: ChangeEvent<HTMLInputElement>) {
-        const file = e.target.files?.[0];
-        if (!file) return;
+
+    function loadFile(file: File) {
         const url = URL.createObjectURL(file);
         const type = file.type === "image/gif"
             ? "gif"
@@ -33,18 +34,39 @@ export default function Upload() {
             file
         });
     }
+
+    function handleFile(e: ChangeEvent<HTMLInputElement>) {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        loadFile(file);
+    }
+
+    function handleDrag(e: DragEvent<HTMLDivElement>) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.type === "dragenter" || e.type === "dragover") {
+            setDragActive(true);
+        } else if (e.type === "dragleave") {
+            setDragActive(false);
+        }
+    }
+    function handleDrop(e: DragEvent<HTMLDivElement>) {
+        e.preventDefault();
+        e.stopPropagation();
+        setDragActive(false);
+        const file = e.dataTransfer.files?.[0];
+        if (!file) return;
+        loadFile(file);
+    }
     return (
         <section className="upload-section">
-
-            <div className="upload-card">
-
-                <div className="upload-icon">
-                    📁
-                </div>
-                <h2>
-                    Upload Image or GIF
-                </h2>
-                <p> PNG, JPG, WEBP and GIF are supported.</p>
+            <div
+                className={`upload-card ${dragActive ? "drag-active" : ""}`}
+                onDragEnter={handleDrag}
+                onDragLeave={handleDrag}
+                onDragOver={handleDrag}
+                onDrop={handleDrop}
+            >
                 <input
                     hidden
                     id="upload"
@@ -54,15 +76,35 @@ export default function Upload() {
                 />
                 <label
                     htmlFor="upload"
-                    className="upload-btn">Choose File
+                    className={`upload-dropzone ${dragActive ? "drag-active" : ""}`}
+                >
+                    <div className="upload-icon">
+                        ⬆️
+                    </div>
+                    <h2>Drop your image here</h2>
+                    <p>
+                        Drag & drop PNG, JPG, WEBP or GIF
+                    </p>
+                    <span className="upload-divider">
+                        or
+                    </span>
+                    <span className="upload-btn">
+                        Browse Files
+                    </span>
+                    <small>
+                        Maximum file size: 20 MB
+                    </small>
                 </label>
-                <h2 style={{ marginTop: "50px", marginBottom: "20px" }}>
-                    Converter Settings
+                <h2
+                    style={{
+                        marginTop: "50px",
+                        marginBottom: "20px"
+                    }}
+                >Converter Settings
                 </h2>
                 <Controls
                     options={options}
-                    setOptions={setOptions}
-                />
+                    setOptions={setOptions} />
                 {fileData && (
                     <div className="converter-grid">
                         <div className="converter-panel">
@@ -87,5 +129,4 @@ export default function Upload() {
             </div>
         </section>
     );
-
 }
