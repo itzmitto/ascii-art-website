@@ -1,32 +1,39 @@
+"use client";
 type ControlsProps = {
     width: number;
     setWidth: (value: number) => void;
 };
-export default function Controls({
-    width,
-    setWidth,
-}: ControlsProps) {
+export default function Controls({ width, setWidth }: ControlsProps) {
     return (
-        <section className="controls">
-            <div className="control">
-
+        <div className="controls">
+            <div className="control-group">
                 <div className="control-header">
                     <span>ASCII Width</span>
-                    <strong>{width}px</strong>
+                    <span>{width}</span>
                 </div>
                 <input
                     type="range"
-                    min={40}  
-                    max={250}
-                    step={1}
+                    min="40"
+                    max="300"
+                    step="10"
                     value={width}
                     onChange={(e) => setWidth(Number(e.target.value))}
                 />
-                <p className="control-description">
-                    Adjust the width of the generated ASCII art. Higher values
-                    create more detail but take longer to render.
-                </p>
             </div>
-        </section>
+            <div className="control-group">
+                <div className="control-header">
+                    <span>Character Set</span>
+                </div>
+                <select disabled>
+                    <option>Standard (coming soon)</option>
+                </select>
+            </div>
+            <div className="control-group">
+                <label className="checkbox">
+                    <input type="checkbox" disabled />
+                    <span>Invert Colors (coming soon)</span>
+                </label>
+            </div>
+        </div>
     );
 }
