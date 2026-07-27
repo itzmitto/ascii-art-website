@@ -104,3 +104,56 @@ img {
 .secondary-btn:hover {
   background: rgba(255, 255, 255, .08);
 }
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 20px 40px;
+  background: rgba(5, 5, 5, .65);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.navbar-container {
+  max-width: 1300px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: .5px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 34px;
+}
+
+.nav-links a {
+  color: #bdbdbd;
+  transition: .3s;
+}
+
+.nav-links a:hover {
+  color: white;
+}
+
+.github-btn {
+  padding: 12px 22px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, .15);
+  background: rgba(255, 255, 255, .05);
+  transition: .3s;
+}
+
+.github-btn:hover {
+  background: white;
+  color: black;
+}
