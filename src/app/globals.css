@@ -351,3 +351,67 @@ img {
   width: 18px;
   height: 18px;
 }
+
+.controls {
+  margin-top: 45px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  text-align: left;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.control-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: .95rem;
+}
+
+.controls input[type="range"] {
+  width: 100%;
+  height: 6px;
+  appearance: none;
+  background: #242424;
+  border-radius: 999px;
+  outline: none;
+}
+
+.controls input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+}
+
+.controls select {
+  padding: 14px 16px;
+  background: #121212;
+  color: white;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, .08);
+  font: inherit;
+  outline: none;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: .95rem;
+  cursor: pointer;
+}
+
+.checkbox input {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
