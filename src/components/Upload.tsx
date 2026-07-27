@@ -9,7 +9,6 @@ import { UploadFile } from "@/types/ascii";
 export default function Upload() {
 
     const [fileData, setFileData] = useState<UploadFile | null>(null);
-
     const [options, setOptions] = useState<AsciiOptions>({
         width: 120,
         brightness: 0,
@@ -19,19 +18,13 @@ export default function Upload() {
     });
 
     const ascii = useAscii(fileData?.url ?? null, options);
-
     function handleFile(e: ChangeEvent<HTMLInputElement>) {
-
         const file = e.target.files?.[0];
-
         if (!file) return;
-
         const url = URL.createObjectURL(file);
-
         const type = file.type === "image/gif"
             ? "gif"
             : "image";
-
         setFileData({
             type,
             name: file.name,
@@ -39,11 +32,8 @@ export default function Upload() {
             url,
             file
         });
-
     }
-
     return (
-
         <section className="upload-section">
 
             <div className="upload-card">
@@ -51,15 +41,10 @@ export default function Upload() {
                 <div className="upload-icon">
                     📁
                 </div>
-
                 <h2>
                     Upload Image or GIF
                 </h2>
-
-                <p>
-                    PNG, JPG, WEBP and GIF are supported.
-                </p>
-
+                <p> PNG, JPG, WEBP and GIF are supported.</p>
                 <input
                     hidden
                     id="upload"
@@ -67,14 +52,10 @@ export default function Upload() {
                     accept="image/*"
                     onChange={handleFile}
                 />
-
                 <label
                     htmlFor="upload"
-                    className="upload-btn"
-                >
-                    Choose File
+                    className="upload-btn">Choose File
                 </label>
-
                 <Controls
                     options={options}
                     setOptions={setOptions}
