@@ -157,3 +157,58 @@ img {
   background: white;
   color: black;
 }
+
+.upload-section {
+  padding: 120px 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.upload-card {
+  width: 100%;
+  max-width: 900px;
+  padding: 70px;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, .03);
+  backdrop-filter: blur(20px);
+  text-align: center;
+  transition: .35s;
+}
+
+.upload-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, .18);
+}
+
+.upload-icon {
+  font-size: 70px;
+  margin-bottom: 30px;
+}
+
+.upload-card h2 {
+  font-size: 2.2rem;
+  margin-bottom: 18px;
+}
+
+.upload-card p {
+  color: #bcbcbc;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+.upload-btn {
+  padding: 18px 34px;
+  border: none;
+  border-radius: 14px;
+  background: white;
+  color: black;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: .3s;
+}
+
+.upload-btn:hover {
+  transform: scale(1.04);
+}
