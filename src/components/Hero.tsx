@@ -2,7 +2,9 @@ export default function Hero() {
   return (
     <section id="top" className="hero">
       <div className="hero-content">
-        <span className="hero-badge">✦ Fast • Browser Based • Free</span>
+        <span className="hero-badge">
+          ✦ Fast • Browser Based • Free
+        </span>
         <h1 className="hero-title">
           Turn Images & GIFs
           <br />
@@ -14,26 +16,18 @@ export default function Hero() {
           device.
         </p>
         <div className="hero-buttons">
-          <button
+          <a
+            href="#converter"
             className="primary-btn"
-            onClick={() => {
-              document.getElementById("converter")?.scrollIntoView({
-                behavior: "smooth",
-              });
-            }}
           >
             Start Creating
-          </button>
-          <button
+          </a>
+          <a
+            href="#examples"
             className="secondary-btn"
-            onClick={() => {
-              document.getElementById("examples")?.scrollIntoView({
-                behavior: "smooth",
-              });
-            }}
           >
             View Examples
-          </button>
+          </a>
         </div>
         <div className="hero-stats">
           <div className="hero-stat">
