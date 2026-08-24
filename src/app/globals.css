@@ -322,6 +322,55 @@ img {
 }
 
 /* =========================
+   GENERAL SECTIONS
+========================= */
+
+.section-placeholder {
+  position: relative;
+  width: 100%;
+  padding: 120px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(106, 168, 255, 0.04),
+    transparent 35%
+  );
+}
+
+.section-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section-eyebrow {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.section-title {
+  max-width: 800px;
+  margin: 0 auto 20px;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 800;
+}
+
+.section-description {
+  max-width: 650px;
+  margin: 0 auto;
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+/* =========================
    UPLOAD / CONVERTER
 ========================= */
 
@@ -723,6 +772,18 @@ img {
   tab-size: 1;
 }
 
+.ascii-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #575757;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.9rem !important;
+  line-height: 1.5 !important;
+  white-space: normal;
+}
+
 /* =========================
    ASCII TOOLBAR
 ========================= */
@@ -797,16 +858,8 @@ img {
   margin-bottom: 14px;
 }
 
-.ascii-controls span {
-  min-width: 55px;
-  text-align: center;
-  color: #8a8a8a;
-  font-size: 0.85rem;
-  font-variant-numeric: tabular-nums;
-}
-
-.zoom-btn {
-  width: 36px;
+.zoom-btn,
+.zoom-value {
   height: 36px;
   display: inline-flex;
   align-items: center;
@@ -815,17 +868,36 @@ img {
   border-radius: 10px;
   background: #161616;
   color: white;
-  font-size: 1rem;
   transition:
     transform 0.25s ease,
     background 0.25s ease,
-    color 0.25s ease;
+    color 0.25s ease,
+    border-color 0.25s ease,
+    opacity 0.25s ease;
 }
 
-.zoom-btn:hover {
+.zoom-btn {
+  width: 36px;
+  font-size: 1rem;
+}
+
+.zoom-value {
+  min-width: 62px;
+  padding: 0 12px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.zoom-btn:hover:not(:disabled),
+.zoom-value:hover {
   background: white;
   color: black;
+  border-color: white;
   transform: translateY(-2px);
+}
+
+.zoom-btn:disabled {
+  opacity: 0.35;
 }
 
 /* =========================
@@ -963,6 +1035,14 @@ img {
     border-top: 1px solid rgba(255, 255, 255, 0.07);
   }
 
+  .section-placeholder {
+    padding: 90px 18px;
+  }
+
+  .section-title {
+    font-size: 2.35rem;
+  }
+
   .upload-section {
     padding: 80px 14px;
   }
@@ -1050,5 +1130,9 @@ img {
 
   .toolbar-btn {
     min-width: 0;
+  }
+
+  .section-title {
+    font-size: 2rem;
   }
 }
