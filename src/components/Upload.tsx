@@ -15,7 +15,6 @@ export default function Upload() {
   const [fileData, setFileData] = useState<UploadFile | null>(null);
   const [dragActive, setDragActive] = useState(false);
   const [error, setError] = useState("");
-
   const [options, setOptions] = useState<AsciiOptions>({
     width: 120,
     brightness: 0,
@@ -24,7 +23,7 @@ export default function Upload() {
     characterSet: "standard",
   });
 
-  const ascii = useAscii(fileData?.url ?? null, options);
+  const { ascii, loading } = useAscii(fileData?.url ?? null, options);
 
   useEffect(() => {
     return () => {
@@ -170,6 +169,10 @@ export default function Upload() {
 
             <div className="converter-panel">
               <AsciiViewer ascii={ascii} />
+
+              {loading && (
+                <div className="ascii-loading">Generating ASCII art...</div>
+              )}
             </div>
           </div>
         )}
