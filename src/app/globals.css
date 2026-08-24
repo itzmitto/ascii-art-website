@@ -45,6 +45,10 @@ button {
   cursor: pointer;
 }
 
+button:disabled {
+  cursor: not-allowed;
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -732,8 +736,17 @@ img {
 }
 
 .toolbar-title {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   font-size: 1rem;
   font-weight: 700;
+}
+
+.toolbar-title small {
+  color: #626262;
+  font-size: 0.74rem;
+  font-weight: 500;
 }
 
 .toolbar-buttons {
@@ -755,14 +768,25 @@ img {
     transform 0.25s ease,
     background 0.25s ease,
     color 0.25s ease,
-    border-color 0.25s ease;
+    border-color 0.25s ease,
+    opacity 0.25s ease;
 }
 
-.toolbar-btn:hover {
+.toolbar-btn:hover:not(:disabled) {
   background: white;
   color: black;
   border-color: white;
   transform: translateY(-2px);
+}
+
+.toolbar-btn:disabled {
+  opacity: 0.35;
+}
+
+.toolbar-btn.copied {
+  background: rgba(106, 168, 255, 0.12);
+  color: #9bc5ff;
+  border-color: rgba(106, 168, 255, 0.3);
 }
 
 .ascii-controls {
@@ -1018,5 +1042,13 @@ img {
 
   .reset-btn {
     align-self: flex-start;
+  }
+
+  .toolbar-buttons {
+    width: 100%;
+  }
+
+  .toolbar-btn {
+    min-width: 0;
   }
 }
